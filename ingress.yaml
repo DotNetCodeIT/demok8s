@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: podinfo
+  namespace: default
+spec:
+  rules:
+  - host: demoaks.almdev.it
+    http:
+      paths:
+      - backend:
+          serviceName: podinfo
+          servicePort: 9898
+  tls:
+  - hosts:
+    - demoaks.almdev.it
+    secretName: podinfole
